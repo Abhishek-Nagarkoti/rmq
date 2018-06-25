@@ -63,11 +63,12 @@ func openConnectionWithRedisClient(tag string, redisClient RedisClient) *redisCo
 }
 
 // OpenConnection opens and returns a new connection
-func OpenConnection(tag, network, address string, db int) *redisConnection {
+func OpenConnection(tag, network, address, password string, db int) *redisConnection {
 	redisClient := redis.NewClient(&redis.Options{
-		Network: network,
-		Addr:    address,
-		DB:      db,
+		Network:  network,
+		Addr:     address,
+		DB:       db,
+		Password: password,
 	})
 	return OpenConnectionWithRedisClient(tag, redisClient)
 }
